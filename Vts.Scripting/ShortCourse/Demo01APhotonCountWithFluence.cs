@@ -1,4 +1,8 @@
-﻿namespace Vts.Scripting.ShortCourse;
+﻿using Plotly.NET;
+using Chart = Plotly.NET.CSharp.Chart;
+using ColorBar = Plotly.NET.ColorBar;
+
+namespace Vts.Scripting.ShortCourse;
 
 /// <summary>
 /// Class using the Vts.dll library to demonstrate performing a Monte Carlo simulation 
@@ -99,16 +103,17 @@ internal class Demo01APhotonCountWithFluence : IDemoScript
                 .ToArray();
             var fluenceDataToPlot = fluenceRowsToPlot.Reverse().Concat(fluenceRowsToPlot).ToArray(); // duplicate for -rho to make symmetric
             var fluenceMap = Heatmap(values: fluenceDataToPlot, x: allRhos, y: zs,
-                xLabel: "ρ [mm]", yLabel: "z [mm]", title: $"log(Φ(ρ, z))");
+                xLabel: "ρ [mm]", yLabel: "z [mm]", title: "log(Φ(ρ, z))");
 
             var relativeErrorRowsToPlot = allRelativeErrors[npIdx]
                 .Chunk(zs.Length) // break the heatmap into rows (inner dimension is zs)   
                 .ToArray();
             var relativeErrorDataToPlot = relativeErrorRowsToPlot.Reverse().Concat(relativeErrorRowsToPlot).ToArray(); // duplicate for -rho to make symmetric
             var relativeErrorMap = Heatmap(values: relativeErrorDataToPlot, x: allRhos, y: zs,
-                xLabel: "ρ [mm]", yLabel: "z [mm]", title: $"error(ρ, z)");
+                xLabel: "ρ [mm]", yLabel: "z [mm]", title: "error(ρ, z)");
 
-            var combined = Chart.Grid(new[]{ fluenceMap, relativeErrorMap }, nRows: 2, nCols: 1, Pattern: Plotly.NET.StyleParam.LayoutGridPattern.Coupled);
+            var combined = Chart.Grid([fluenceMap.WithColorBar(ColorBar.init<IConvertible, IConvertible>(Title: Title.init("log(Φ(ρ, z))"), YAnchor: StyleParam.VerticalAlign.Top)), relativeErrorMap.WithColorBar(ColorBar.init<IConvertible, IConvertible>(Title: Title.init("error(ρ, z)"), YAnchor: StyleParam.VerticalAlign.Bottom))
+            ], nRows: 2, nCols: 1, Pattern: Plotly.NET.StyleParam.LayoutGridPattern.Coupled);
 
             return combined;
         });
@@ -117,7 +122,7 @@ internal class Demo01APhotonCountWithFluence : IDemoScript
         {
             foreach (var chart in charts)
             {
-                chart.Show();
+                Plotly.NET.CSharp.GenericChartExtensions.Show(chart);
             }
         }
     }
