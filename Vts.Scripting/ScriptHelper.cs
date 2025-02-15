@@ -20,10 +20,10 @@ public static class ScriptHelper
     /// <summary>
     /// Method to create a standard scatter chart from the specified x and y values using Plotly.NET
     /// </summary>
-    /// <param name="xValues">The values for the x axis.</param>
-    /// <param name="yValues">The values for the y axis.</param>
-    /// <param name="xLabel">The label for the x axis. Optional.</param>
-    /// <param name="yLabel">The label for the y axis. Optional.</param>
+    /// <param name="xValues">The values for the x-axis.</param>
+    /// <param name="yValues">The values for the y-axis.</param>
+    /// <param name="xLabel">The label for the x-axis. Optional.</param>
+    /// <param name="yLabel">The label for the y-axis. Optional.</param>
     /// <param name="title">The title of the chart. Optional.</param>
     /// <returns>A `GenericChart` instance representing the scatter chart.</returns>
     public static GenericChart ScatterChart(double[] xValues, double[] yValues, string xLabel = "", string yLabel = "", string title = "")
@@ -34,10 +34,10 @@ public static class ScriptHelper
     /// <summary>
     /// Method to create a standard scatter chart from the specified x and y values using Plotly.NET
     /// </summary>
-    /// <param name="xValues">The values for the x axis.</param>
-    /// <param name="yValues">The values for the y axis.</param>
-    /// <param name="xLabel">The label for the x axis. Optional.</param>
-    /// <param name="yLabel">The label for the y axis. Optional.</param>
+    /// <param name="xValues">The values for the x-axis.</param>
+    /// <param name="yValues">The values for the y-axis.</param>
+    /// <param name="xLabel">The label for the x-axis. Optional.</param>
+    /// <param name="yLabel">The label for the y-axis. Optional.</param>
     /// <param name="title">The title of the chart. Optional.</param>
     /// <returns>A `GenericChart` instance representing the line chart.</returns>
     public static GenericChart LineChart(double[] xValues, double[] yValues, string xLabel = "", string yLabel = "", string title = "")
