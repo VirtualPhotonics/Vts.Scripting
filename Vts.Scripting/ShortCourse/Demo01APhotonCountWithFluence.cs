@@ -112,8 +112,8 @@ internal class Demo01APhotonCountWithFluence : IDemoScript
             var relativeErrorMap = Heatmap(values: relativeErrorDataToPlot, x: allRhos, y: zs,
                 xLabel: "ρ [mm]", yLabel: "z [mm]", title: "error(ρ, z)");
 
-            var combined = Chart.Grid([fluenceMap.WithColorBar(ColorBar.init<IConvertible, IConvertible>(Title: Title.init("log(Φ(ρ, z))"), YAnchor: StyleParam.VerticalAlign.Top)), relativeErrorMap.WithColorBar(ColorBar.init<IConvertible, IConvertible>(Title: Title.init("error(ρ, z)"), YAnchor: StyleParam.VerticalAlign.Bottom))
-            ], nRows: 2, nCols: 1, Pattern: Plotly.NET.StyleParam.LayoutGridPattern.Coupled);
+            var combined = Chart.Grid([fluenceMap.WithColorBar(ColorBar.init<IConvertible, IConvertible>(Title: Title.init("log(Φ(ρ, z))"), YAnchor: StyleParam.VerticalAlign.Bottom)), relativeErrorMap.WithColorBar(ColorBar.init<IConvertible, IConvertible>(Title: Title.init("error(ρ, z)"), YAnchor: StyleParam.VerticalAlign.Top))
+            ], nRows: 2, nCols: 1, Pattern: StyleParam.LayoutGridPattern.Coupled);
 
             return combined;
         });

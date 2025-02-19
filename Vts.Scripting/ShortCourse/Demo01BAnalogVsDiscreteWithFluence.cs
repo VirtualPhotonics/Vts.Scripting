@@ -130,7 +130,7 @@ internal class Demo01BAnalogVsDiscreteWithFluence : IDemoScript
             var relativeErrorMap = Heatmap(values: relativeErrorDataToPlot, x: allRhos, y: zs,
                 xLabel: "ρ [mm]", yLabel: "z [mm]", title: $"error(ρ, z) - {tuple.weightingType} N={tuple.numPhotons}");
 
-            var combined = Chart.Grid([fluenceMap.WithColorBar(ColorBar.init<IConvertible, IConvertible>(Title: Title.init($"log(Φ(ρ, z)) - {tuple.weightingType} N={tuple.numPhotons}"), YAnchor: StyleParam.VerticalAlign.Top)), relativeErrorMap.WithColorBar(ColorBar.init<IConvertible, IConvertible>(Title: Title.init($"error(ρ, z) - {tuple.weightingType} N={tuple.numPhotons}"), YAnchor: StyleParam.VerticalAlign.Bottom))], nRows: 2, nCols: 1, Pattern: StyleParam.LayoutGridPattern.Coupled);
+            var combined = Chart.Grid([fluenceMap.WithColorBar(ColorBar.init<IConvertible, IConvertible>(Title: Title.init($"log(Φ(ρ, z)) - {tuple.weightingType} N={tuple.numPhotons}"), YAnchor: StyleParam.VerticalAlign.Bottom)), relativeErrorMap.WithColorBar(ColorBar.init<IConvertible, IConvertible>(Title: Title.init($"error(ρ, z) - {tuple.weightingType} N={tuple.numPhotons}"), YAnchor: StyleParam.VerticalAlign.Top))], nRows: 2, nCols: 1, Pattern: StyleParam.LayoutGridPattern.Coupled);
 
             return combined;
         });
