@@ -101,14 +101,14 @@ internal class Demo01APhotonCountWithFluence : IDemoScript
                 .Select(f => Math.Log(f)) // take log for visualization purposes (negative infinity/NaN values won't be rendered )
                 .Chunk(zs.Length) // break the heatmap into rows (inner dimension is zs)   
                 .ToArray();
-            var fluenceDataToPlot = fluenceRowsToPlot.Reverse().Concat(fluenceRowsToPlot).ToArray(); // duplicate for -rho to make symmetric
+            var fluenceDataToPlot = Enumerable.Reverse(fluenceRowsToPlot).Concat(fluenceRowsToPlot).ToArray(); // duplicate for -rho to make symmetric
             var fluenceMap = Heatmap(values: fluenceDataToPlot, x: allRhos, y: zs,
                 xLabel: "ρ [mm]", yLabel: "z [mm]", title: "log(Φ(ρ, z))");
 
             var relativeErrorRowsToPlot = allRelativeErrors[npIdx]
                 .Chunk(zs.Length) // break the heatmap into rows (inner dimension is zs)   
                 .ToArray();
-            var relativeErrorDataToPlot = relativeErrorRowsToPlot.Reverse().Concat(relativeErrorRowsToPlot).ToArray(); // duplicate for -rho to make symmetric
+            var relativeErrorDataToPlot = Enumerable.Reverse(relativeErrorRowsToPlot).Concat(relativeErrorRowsToPlot).ToArray(); // duplicate for -rho to make symmetric
             var relativeErrorMap = Heatmap(values: relativeErrorDataToPlot, x: allRhos, y: zs,
                 xLabel: "ρ [mm]", yLabel: "z [mm]", title: "error(ρ, z)");
 

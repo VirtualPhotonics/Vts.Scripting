@@ -38,7 +38,7 @@ internal class Demo04FluenceOfRhoAndZAndFt : IDemoScript
             .Select(fluence => Math.Log(fluence.Magnitude)) // take log for visualization purposes
             .Chunk(zs.Length) // break the heatmap into rows (inner dimension is zs)
             .ToArray();
-        var allCwFluenceRowsToPlot = cwFluenceRowsToPlot.Reverse().Concat(cwFluenceRowsToPlot).ToArray(); // duplicate for -rho to make symmetric
+        var allCwFluenceRowsToPlot = Enumerable.Reverse(cwFluenceRowsToPlot).Concat(cwFluenceRowsToPlot).ToArray(); // duplicate for -rho to make symmetric
         var cwFluenceChart = Heatmap(values: allCwFluenceRowsToPlot, x: allRhos, y: zs, xLabel: "ρ", yLabel: "z", title: "log(Φ(ρ, z, ft=0Ghz))");
 
         // Plot the frequency-domain fluence amplitude at 1GHz: log(fluence(rho, z, ft=0GHz)) 
@@ -46,7 +46,7 @@ internal class Demo04FluenceOfRhoAndZAndFt : IDemoScript
             .Select(fluence => Math.Log(fluence.Magnitude)) // take log for visualization purposes
             .Chunk(zs.Length) // break the heatmap into rows (inner dimension is zs)
             .ToArray();
-        var allFdFluenceRowsToPlot = fdFluenceRowsToPlot.Reverse().Concat(fdFluenceRowsToPlot).ToArray(); // duplicate for -rho to make symmetric
+        var allFdFluenceRowsToPlot = Enumerable.Reverse(fdFluenceRowsToPlot).Concat(fdFluenceRowsToPlot).ToArray(); // duplicate for -rho to make symmetric
         var fdFluenceChart = Heatmap(values: allFdFluenceRowsToPlot, x: allRhos, y: zs, xLabel: "ρ", yLabel: "z", title: "log(Φ(ρ, z, ft=1Ghz))");
 
         // calculate the modulation by taking an element-wise ratio of the fluence maps (i.e. FD/Cw)
@@ -56,7 +56,7 @@ internal class Demo04FluenceOfRhoAndZAndFt : IDemoScript
         var modFluenceRowsToPlot = modFluenceOfRhoAndZ
             .Chunk(zs.Length) // break the heatmap into rows (inner dimension is zs)
             .ToArray();
-        var allModFluenceRowsToPlot = modFluenceRowsToPlot.Reverse().Concat(modFluenceRowsToPlot).ToArray(); // duplicate for -rho to make symmetric
+        var allModFluenceRowsToPlot = Enumerable.Reverse(modFluenceRowsToPlot).Concat(modFluenceRowsToPlot).ToArray(); // duplicate for -rho to make symmetric
         var modFluenceChart = Heatmap(values: allModFluenceRowsToPlot, x: allRhos, y: zs,
             xLabel: "ρ [mm]", yLabel: "z [mm]", title: "modulation(ρ, z) @ ft=1Ghz))");
 

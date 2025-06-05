@@ -30,8 +30,7 @@ internal class Demo08AbsorbedEnergyOfRhoAndZ : IDemoScript
             .Select(ae => Math.Log(ae)) // take log for visualization purposes
             .Chunk(zs.Length) // break the heatmap into rows (inner dimension is zs)        
             .ToArray();
-        var allAbsorbedEnergyRowsToPlot = absorbedEnergyRowsToPlot.Reverse()
-            .Concat(absorbedEnergyRowsToPlot).ToArray(); // duplicate for -rho to make symmetric
+        var allAbsorbedEnergyRowsToPlot = Enumerable.Reverse(absorbedEnergyRowsToPlot).Concat(absorbedEnergyRowsToPlot).ToArray(); // duplicate for -rho to make symmetric
         var absorbedEnergyChart = Heatmap(
             values: allAbsorbedEnergyRowsToPlot, x: allRhos, y: zs,
             xLabel: "ρ [mm]", yLabel: "z [mm]", title: $"log(AbsorbedEnergy(ρ, z) [mm-3])");
